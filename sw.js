@@ -1,7 +1,8 @@
-const CACHE = 'ayva-biome-v2-governance';
+const CACHE = 'ayva-biome-v2-2-offline';
 const ASSETS = [
   './',
   './index.html',
+  './styles.css',
   './manifest.json',
   './icon-192.png',
   './icon-512.png'
