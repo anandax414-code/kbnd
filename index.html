@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayva's Biome — Governance Stack</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { font-variant-ligatures: common-ligatures; }
+  body { background:#020608; overscroll-behavior: none; }
+  .font-mono { font-family: "Fragment Mono", monospace; }
+  @keyframes breathe { 0%,100%{ transform:scale(1)} 50%{ transform:scale(1.04)} }
+  @keyframes rotate { to { transform: rotate(360deg) } }
+  @keyframes pulse-gold { 0%,100%{ opacity:.5 } 50%{ opacity:1 } }
+  @keyframes drift { 0% { transform: translateY(0) translateX(0)} 100% { transform: translateY(-8px) translateX(3px)} }
+  @keyframes float-note { 0% { transform: translateY(0); opacity:.6 } 100% { transform: translateY(-20px); opacity:0 } }
+  #vinay { animation: breathe 3.2s ease-in-out infinite; transform-origin: center; }
+  #prabhu-crown { animation: rotate 28s linear infinite; transform-origin: 0 0; }
+  .veer-glow { filter: drop-shadow(0 0 18px #4a6fa5) drop-shadow(0 0 32px #4a6fa5aa); }
+  .pulse-ring { animation: pulse-gold 2s ease-in-out infinite; }
+  .guru-particle { animation: drift 18s ease-in-out infinite alternate; }
+  .glass { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  /* scrollbar hide */
+  ::-webkit-scrollbar { display:none; }
+</style>
+</head>
+<body class="text-white selection:bg-[#87a96b]/30">
+<div class="relative min-h-screen w-screen overflow-hidden">
+
+  <!-- Background -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0a1f1a_0%,_#020608_60%)]"></div>
+    <canvas id="stars" class="absolute inset-0 opacity-[0.15]"></canvas>
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image:url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBkPSJNMjAgMjFhMSAxIDAgMTEtMiAwIDEgMSAwIDAxMiAwIiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9Ii4yIi8+PC9nPjwvc3ZnPg==')"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="relative z-30 flex items-center justify-between px-4 md:px-6 py-4">
+    <div>
+      <h1 class="text-[18px] md:text-[22px] font-[300] tracking-[0.18em]">AYVA'S BIOME <span class="text-[#d4af37]">/ GOVERNANCE</span></h1>
+      <p class="font-mono text-[11px] text-white/45 mt-0.5 tracking-wider">VINAY • VEERENDRA • PRABHU • GURU — learning & control complete</p>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <div class="text-[10px] font-mono text-white/40">HARMONY</div>
+      <div id="harmony-dot" class="w-[8px] h-[8px] rounded-full bg-white/20 transition-all duration-700"></div>
+    </div>
+  </header>
+
+  <!-- Biome -->
+  <div class="relative z-10 w-full h-[64vh] md:h-[72vh] -mt-2">
+    <svg viewBox="0 0 1300 800" class="w-full h-full overflow-visible">
+      <defs>
+        <radialGradient id="goldGlow" cx="50%" cy="50%"><stop offset="0%" stop-color="#b8860b" stop-opacity="0.85"/><stop offset="100%" stop-color="#b8860b" stop-opacity="0"/></radialGradient>
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a3d3d" stop-opacity=".55"/><stop offset="100%" stop-color="#052222" stop-opacity=".95"/></linearGradient>
+        <filter id="glowGreen"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glowBlue"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glowGold"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <marker id="arrowSteel" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#4a6fa5"/></marker>
+        <marker id="arrowSilver" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><polygon points="0 0,7 3.5,0 7" fill="#cbd5e1"/></marker>
+      </defs>
+
+      <!-- wiring -->
+      <g id="wiring" stroke="#d4af37" stroke-opacity="0.14" fill="none" stroke-width="1.2">
+        <path id="wire-vinay-anjali" d="M650 285 V340" stroke="#87a96b" stroke-opacity="0.25"/>
+        <path id="wire-vinay-jk" d="M678 270 C760 300 860 360 920 410"/>
+        <path id="wire-veer-arj" d="M358 398 L378 418"/>
+        <path id="wire-veer-ant" d="M368 380 C600 350 900 330 1098 325" stroke="#4a6fa5" stroke-opacity="0.18"/>
+        <path id="wire-prabhu-pra" d="M650 118 L650 468" stroke="#b8860b"/>
+        <path id="wire-prabhu-aish" d="M650 118 C580 300 580 520 650 620" stroke="#b8860b" stroke-dasharray="3 4"/>
+        <path id="wire-guru" d="M200 720 H1100" stroke="#8b6914" stroke-opacity="0.22"/>
+      </g>
+
+      <!-- water -->
+      <rect x="0" y="680" width="1300" height="120" fill="url(#waterGrad)"/>
+      <g id="guru-riverbed" opacity="0.9"></g>
+
+      <!-- trunk -->
+      <path d="M650 700 C650 520 652 320 650 158" stroke="#0f1e16" stroke-width="46" fill="none" stroke-linecap="round" opacity=".5"/>
+      <path d="M650 700 C650 520 652 320 650 158" stroke="#1e3a2a" stroke-width="22" fill="none" stroke-linecap="round" opacity=".7"/>
+
+      <!-- PRABHU -->
+      <g id="prabhu" transform="translate(650 92)">
+        <circle r="38" fill="url(#goldGlow)" opacity=".35" class="pulse-ring"/>
+        <g filter="url(#glowGold)">
+          <circle r="27" fill="none" stroke="#b8860b" stroke-width="2.2"/>
+          <circle r="20" fill="none" stroke="#d4af37" stroke-width="1" opacity=".7"/>
+        </g>
+        <g id="prabhu-crown" stroke="#b8860b" stroke-width="2" fill="none">
+          <path d="M-26 -1 L-18 -15 L-9 -3 L0 -18 L9 -3 L18 -15 L26 -1"/>
+          <circle r="4" cy="-8" fill="#b8860b" stroke="none" opacity=".9"/>
+        </g>
+        <text y="54" text-anchor="middle" fill="#b8860b" font-size="10.5" font-family="Fragment Mono" letter-spacing="1">PRABHU // Primary Arbiter</text>
+      </g>
+
+      <!-- SU -->
+      <g transform="translate(650 142)" opacity=".75">
+        <ellipse cx="0" cy="2" rx="20" ry="8.5" fill="#d4af37" opacity=".18"/>
+        <path d="M-9 0 Q0 -11 9 0 M-4 -3 L0 -8 L4 -3" fill="none" stroke="#d4af37" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+
+      <!-- VINAY + ANJALI -->
+      <g transform="translate(650 265)">
+        <g opacity=".55">
+          <path d="M-26 14 C-20 -2 -11 -10 0 -12 C11 -10 20 -2 26 14" fill="none" stroke="#87a96b" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M-18 9 C-12 1 -6 -3 0 -4 C6 -3 12 1 18 9" fill="none" stroke="#c7e0b0" stroke-width="1.3" opacity=".7"/>
+        </g>
+        <g id="vinay" filter="url(#glowGreen)">
+          <circle r="27" fill="none" stroke="#d4af37" stroke-width="1.2" opacity=".75"/>
+          <circle r="23" fill="#87a96b" opacity=".10"/>
+          <circle id="vinayIris" r="16.5" fill="none" stroke="#87a96b" stroke-width="3.8" opacity=".95" style="transition:transform .45s cubic-bezier(.2,.8,.2,1)"/>
+          <circle id="vinayCore" r="7.2" fill="#87a96b"/>
+          <circle r="38" fill="none" stroke="#87a96b" stroke-width="1" opacity=".15" stroke-dasharray="2 6"/>
+        </g>
+        <text y="-42" text-anchor="middle" fill="#a3c586" font-size="11" font-family="Fragment Mono" letter-spacing=".5">VINAY // Validated Input</text>
+        <text id="vinay-feedback" y="52" text-anchor="middle" fill="#87a96b" font-size="10" font-family="Fragment Mono" opacity=".9">balanced</text>
+      </g>
+
+      <!-- ARJUNA -->
+      <g id="arjuna" transform="translate(382 426)">
+        <circle r="34" fill="#cbd5e1" opacity=".06"/>
+        <path d="M-13 -19 L0 -24 L13 -19 L9 14 L-9 14 Z" fill="#94a3b8" opacity=".75"/>
+        <path d="M-20 1 Q0 -26 20 1" fill="none" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round"/>
+        <circle r="3" cy="-8" fill="#e2e8f0"/>
+      </g>
+      <text x="382" y="486" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="Fragment Mono" opacity=".75">ARJUNA</text>
+
+      <!-- VEERENDRA -->
+      <g id="veerendra" transform="translate(338 384)" opacity=".14" style="transition:opacity .9s">
+        <circle r="42" fill="#4a6fa5" opacity=".14" filter="url(#glowBlue)"/>
+        <path d="M-15 -21 L0 -28 L15 -21 L11 16 L-11 16 Z" fill="#4a6fa5" opacity=".92"/>
+        <path d="M-22 2 Q0 -30 22 2" fill="none" stroke="#7aa0d4" stroke-width="2.6"/>
+        <path d="M-16 -8 L0 -22 L16 -8" fill="none" stroke="#a8c4eb" stroke-width="1.2" opacity=".8"/>
+      </g>
+      <text x="338" y="448" text-anchor="middle" fill="#5b84c1" font-size="10" font-family="Fragment Mono" opacity=".8">VEERENDRA // Courage Engine</text>
+
+      <!-- JK -->
+      <g transform="translate(918 414)">
+        <g id="j-orb">
+          <circle r="26" fill="#f59e0b" opacity=".18"/>
+          <circle r="17" fill="#f59e0b"/>
+          <text y="4" text-anchor="middle" fill="black" font-size="13" font-weight="600" font-family="Inter">J</text>
+        </g>
+        <g transform="translate(66 0)" id="k-orb">
+          <circle r="26" fill="#0ea5e9" opacity=".18"/>
+          <circle id="k-core" r="17" fill="#0ea5e9"/>
+          <text y="4" text-anchor="middle" fill="black" font-size="13" font-weight="600" font-family="Inter">K</text>
+        </g>
+        <text y="-36" x="33" text-anchor="middle" fill="white" opacity=".55" font-size="10" font-family="Fragment Mono">JK // Joy-Compassion</text>
+      </g>
+
+      <!-- KARUNA -->
+      <g transform="translate(848 544)" opacity=".72" id="karuna-heart">
+        <path d="M0 -13 C-13 -26 -31 -9 -14 9 L0 24 L14 9 C31 -9 13 -26 0 -13 Z" fill="#ec4899" opacity=".68"/>
+      </g>
+      <text x="848" y="582" text-anchor="middle" fill="#ec4899" font-size="9.5" font-family="Fragment Mono" opacity=".7">KARUNA</text>
+
+      <!-- VEENA -->
+      <g transform="translate(248 582)" opacity=".52" id="veena">
+        <ellipse cx="0" cy="0" rx="26" ry="11" fill="none" stroke="#a78bfa" stroke-width="1.4"/>
+        <path d="M-21 -4 L-21 -28 M21 -4 L21 -30" stroke="#a78bfa" stroke-width="1.2"/>
+        <circle cx="-21" cy="-30" r="2.5" fill="#a78bfa"/>
+        <circle cx="21" cy="-32" r="2.5" fill="#a78bfa"/>
+      </g>
+      <text x="248" y="612" text-anchor="middle" fill="#a78bfa" font-size="9" font-family="Fragment Mono">VEENA // Resonance</text>
+
+      <!-- CHANDRIKA -->
+      <g transform="translate(1052 182)" opacity=".68">
+        <circle r="20" fill="#e2e8f0" opacity=".12"/>
+        <path d="M-9 -13 A17 17 0 1 0 9 13 A13 13 0 1 1 -9 -13" fill="#cbd5e1" opacity=".9"/>
+      </g>
+      <text x="1052" y="218" text-anchor="middle" fill="#cbd5e1" font-size="9" font-family="Fragment Mono" opacity=".7">CHANDRIKA // Reflection</text>
+
+      <!-- ANTARES -->
+      <g transform="translate(1102 324)" opacity=".58">
+        <polygon points="0,-15 13,9 -13,9" fill="none" stroke="#ef4444" stroke-width="1.6"/>
+        <circle r="3" fill="#ef4444" opacity=".8"/>
+      </g>
+      <text x="1102" y="350" text-anchor="middle" fill="#ef4444" font-size="8.5" font-family="Fragment Mono">ANTARES // Guard</text>
+
+      <!-- PRA -->
+      <g transform="translate(650 482)" opacity=".7">
+        <rect x="-24" y="-13" width="48" height="26" rx="6" fill="none" stroke="#22c55e" stroke-width="1.3"/>
+        <text y="4" text-anchor="middle" fill="#22c55e" font-size="10" font-family="Fragment Mono">PRA</text>
+      </g>
+
+      <!-- AISHWARYA -->
+      <g transform="translate(650 622)" opacity=".55">
+        <circle r="22" fill="#facc15" opacity=".16"/>
+        <path d="M0 -10 L3 -3 L10 -2 L4 3 L5 10 L0 7 L-5 10 L-4 3 L-10 -2 L-3 -3 Z" fill="#facc15" opacity=".85"/>
+      </g>
+      <text x="650" y="658" text-anchor="middle" fill="#facc15" font-size="9" font-family="Fragment Mono">AISHWARYA // Prosperity</text>
+
+      <!-- arrows -->
+      <g id="arrows"></g>
+    </svg>
+
+    <!-- Guru particles container -->
+    <div id="guru-particles" class="absolute left-0 right-0 bottom-0 h-[120px] pointer-events-none"></div>
+  </div>
+
+  <!-- Governance Panel -->
+  <div class="relative z-30 px-4 pb-6 lg:absolute lg:bottom-5 lg:left-5 lg:p-0 lg:w-[440px]">
+    <div class="glass bg-[#050a08]/75 border border-white/[0.08] rounded-[20px] shadow-[0_10px_40px_-15px_rgba(0,0,0,.8)] p-4">
+      <div class="flex items-center justify-between mb-3.5">
+        <h2 class="font-mono text-[11px] tracking-[0.22em] text-white/70">GOVERNANCE // Vinay • Veerendra • Prabhu • Guru</h2>
+        <div class="flex items-center gap-1.5">
+          <span class="font-mono text-[10px] text-white/35">SYNC</span>
+          <div class="w-1.5 h-1.5 rounded-full bg-emerald-400/80 animate-pulse"></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Vinay -->
+        <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#87a96b]/[0.08] to-transparent border border-[#87a96b]/20 p-3.5 hover:border-[#87a96b]/40 transition">
+          <div class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-[#87a96b]/10 blur-2xl"></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="font-mono text-[10.5px] tracking-wider text-[#a3c586]">VINAY</div>
+              <div class="font-mono text-[9px] text-white/40 -mt-0.5">Humility Gate</div>
+            </div>
+            <div class="text-right">
+              <div id="vinay-humility-txt" class="font-mono text-[15px] leading-none text-[#c7e0b0]">75%</div>
+              <div class="font-mono text-[9px] text-white/35">INDEX</div>
+            </div>
+          <div class="mt-3 h-[5px] w-full rounded-full bg-black/60 overflow-hidden">
+            <div id="vinay-humility-bar" class="h-full w-[75%] bg-gradient-to-r from-[#87a96b] to-[#a3c586] transition-all duration-700"></div>
+          </div>
+          <div class="mt-2.5 grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Input</div>
+              <div id="vinay-input" class="font-mono text-[12px] text-white/90 -mt-0.5">0</div>
+            </div>
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Atten</div>
+              <div id="vinay-atten" class="font-mono text-[12px] text-[#a3c586] -mt-0.5">0dB</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Veerendra -->
+        <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#4a6fa5]/[0.08] to-transparent border border-[#4a6fa5]/20 p-3.5 hover:border-[#4a6fa5]/40 transition">
+          <div class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-[#4a6fa5]/10 blur-2xl"></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="font-mono text-[10.5px] tracking-wider text-[#7aa0d4]">VEERENDRA</div>
+              <div class="font-mono text-[9px] text-white/40 -mt-0.5">Courage Engine</div>
+            </div>
+            <div class="text-right">
+              <div id="veer-courage-txt" class="font-mono text-[15px] leading-none text-[#a8c4eb]">100%</div>
+              <div class="font-mono text-[9px] text-white/35">RESERVE</div>
+            </div>
+          </div>
+          <div class="mt-3 h-[5px] w-full rounded-full bg-black/60 overflow-hidden">
+            <div id="veer-courage-bar" class="h-full w-full bg-gradient-to-r from-[#4a6fa5] to-[#7aa0d4] transition-all duration-700"></div>
+          </div>
+          <div class="mt-2.5 grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Status</div>
+              <div id="veer-status" class="font-mono text-[11px] text-white/85 -mt-0.5">Dormant</div>
+            </div>
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Failovers</div>
+              <div id="veer-failovers" class="font-mono text-[12px] text-[#7aa0d4] -mt-0.5">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prabhu -->
+        <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#b8860b]/[0.08] to-transparent border border-[#b8860b]/25 p-3.5 hover:border-[#b8860b]/40 transition">
+          <div class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-[#b8860b]/10 blur-2xl"></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="font-mono text-[10.5px] tracking-wider text-[#d4af37]">PRABHU</div>
+              <div class="font-mono text-[9px] text-white/40 -mt-0.5">Resource Arbiter</div>
+            </div>
+            <div class="text-right">
+              <div id="prabhu-budget-txt" class="font-mono text-[15px] leading-none text-[#e4c75a]">75%</div>
+              <div class="font-mono text-[9px] text-white/35">BUDGET</div>
+            </div>
+          <div class="mt-3 h-[5px] w-full rounded-full bg-black/60 overflow-hidden">
+            <div id="prabhu-budget-bar" class="h-full w-[75%] bg-gradient-to-r from-[#b8860b] to-[#d4af37] transition-all duration-700"></div>
+          </div>
+          <div class="mt-2.5 grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">PRA →</div>
+              <div id="prabhu-pra" class="font-mono text-[12px] text-white/90 -mt-0.5">64%</div>
+            </div>
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Efficiency</div>
+              <div id="prabhu-eff" class="font-mono text-[12px] text-[#d4af37] -mt-0.5">88%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guru -->
+        <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#8b6914]/[0.10] to-transparent border border-[#8b6914]/25 p-3.5 hover:border-[#8b6914]/40 transition">
+          <div class="absolute -right-6 -top-6 w-20 h-20 rounded-full bg-[#8b6914]/15 blur-2xl"></div>
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="font-mono text-[10.5px] tracking-wider text-[#c49b2a]">GURU</div>
+              <div class="font-mono text-[9px] text-white/40 -mt-0.5">Guided Update</div>
+            </div>
+            <div class="text-right">
+              <div class="flex items-baseline gap-0.5 justify-end">
+                <span class="font-mono text-[15px] leading-none text-[#e0b950]" id="guru-wisdom">0</span>
+                <span class="font-mono text-[10px] text-white/40">W</span>
+              </div>
+              <div class="font-mono text-[9px] text-white/35">WISDOM</div>
+            </div>
+          </div>
+          <div class="mt-3 h-[5px] w-full rounded-full bg-black/60 overflow-hidden">
+            <div id="guru-wisdom-bar" class="h-full w-[0%] bg-gradient-to-r from-[#8b6914] to-[#c49b2a] transition-all duration-1000"></div>
+          </div>
+          <div class="mt-2.5 grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5">
+              <div class="font-mono text-[9px] text-white/35">Lessons</div>
+              <div id="guru-lessons" class="font-mono text-[12px] text-white/90 -mt-0.5">0</div>
+            </div>
+            <div class="rounded-lg bg-black/40 border border-white/5 px-2 py-1.5 min-w-0">
+              <div class="font-mono text-[9px] text-white/35">Last</div>
+              <div id="guru-last" class="font-mono text-[10px] text-[#c49b2a] -mt-0.5 truncate">None</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="relative z-30 px-4 pb-8 lg:absolute lg:top-[88px] lg:right-5 lg:p-0 lg:w-[320px]">
+    <div class="glass bg-[#050a08]/70 border border-white/[0.08] rounded-[20px] p-4">
+      <h3 class="font-mono text-[11px] tracking-[0.2em] text-white/55 mb-3.5">INTERACTION</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="font-mono text-[10px] text-white/45">Signal → Vinay → Anjali</label>
+          <div class="mt-1.5 flex gap-2">
+            <input id="signal-input" type="text" placeholder="type a gentle intention..." class="flex-1 bg-black/60 border border-white/10 focus:border-[#87a96b]/50 rounded-xl px-3 py-2.5 text-[13.5px] outline-none transition placeholder:text-white/25"/>
+            <button id="commit-btn" class="px-3.5 py-2.5 rounded-xl bg-[#87a96b]/15 hover:bg-[#87a96b]/25 border border-[#87a96b]/30 text-[#a3c586] font-mono text-[11px] tracking-wide transition active:scale-[0.98]">COMMIT</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label class="font-mono text-[10px] text-white/45">Arjuna Draw</label>
+            <span id="hold-time" class="font-mono text-[10px] text-white/50">0.0s</span>
+          </div>
+          <button id="draw-btn" class="mt-1.5 w-full py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 active:border-white/20 font-mono text-[12px] tracking-wide transition select-none">HOLD TO DRAW — release to fire</button>
+          <p class="mt-1 font-mono text-[10px] text-white/30">>3.0s → Veerendra standby</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="font-mono text-[10px] text-white/45">JK State</label>
+            <div class="mt-1.5 grid grid-cols-2 gap-1.5">
+              <button id="j-btn" class="py-2 rounded-lg bg-[#f59e0b]/20 border border-[#f59e0b]/40 text-[#fbbf24] font-mono text-[11px]">J</button>
+              <button id="k-btn" class="py-2 rounded-lg bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 text-[#38bdf8]/70 font-mono text-[11px]">K</button>
+            </div>
+            <div id="k-timer" class="mt-1 font-mono text-[10px] text-white/35">K stability: 0s</div>
+          </div>
+          <div>
+            <label class="font-mono text-[10px] text-white/45">Karuna</label>
+            <button id="karuna-btn" class="mt-1.5 w-full py-2 rounded-lg bg-[#ec4899]/10 hover:bg-[#ec4899]/15 border border-[#ec4899]/25 text-[#f472b6]/90 font-mono text-[11px] transition">HOLD</button>
+            <div class="mt-1 font-mono text-[10px] text-white/35">prevents flood</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <label class="font-mono text-[10px] text-white/45">Prabhu Budget</label>
+            <span id="budget-val" class="font-mono text-[11px] text-[#d4af37]">75%</span>
+          </div>
+          <input id="budget-slider" type="range" min="20" max="100" value="75" class="mt-2 w-full h-[4px] rounded-full appearance-none bg-white/10 accent-[#b8860b] [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-[#d4af37]"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div id="toast-container" class="fixed z-[100] bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[420px] space-y-2 pointer-events-none"></div>
+</div>
+
+<script>
+const state = {
+  humility:75, inputLevel:0, attenuation:0,
+  courage:100, veerendraStatus:'Dormant', failovers:0,
+  budget:75, efficiency:88, praAlloc:64,
+  wisdom:0, lessons:0, lastAdjustment:'None',
+  arjunaShots:0, karunaHolds:0, cycleCount:0,
+  jkState:'J', kStuck:0, kInterval:null,
+  recentInputs:[], prosperity:68, totalKarunaShots:0,
+  veerendraThreshold:3.0
+};
+
+const $ = id => document.getElementById(id);
+const vinayIris = $('vinayIris'), vinayCore = $('vinayCore'), vinayFeedback = $('vinay-feedback');
+const veerendraEl = $('veerendra'), arrows = $('arrows');
+const wiring = $('wiring');
+
+function updateUI(){
+  $('vinay-humility-txt').textContent = Math.round(state.humility)+'%';
+  $('vinay-humility-bar').style.width = state.humility+'%';
+  $('vinay-input').textContent = state.inputLevel;
+  $('vinay-atten').textContent = (state.attenuation>0?'+':'')+state.attenuation+'dB';
+  $('vinay-atten').className = 'font-mono text-[12px] -mt-0.5 ' + (state.attenuation<0?'text-red-400':state.attenuation>0?'text-emerald-400':'text-[#a3c586]');
+
+  $('veer-courage-txt').textContent = Math.round(state.courage)+'%';
+  $('veer-courage-bar').style.width = state.courage+'%';
+  $('veer-status').textContent = state.veerendraStatus;
+  $('veer-failovers').textContent = state.failovers;
+
+  $('prabhu-budget-txt').textContent = state.budget+'%';
+  $('prabhu-budget-bar').style.width = state.budget+'%';
+  $('prabhu-pra').textContent = state.praAlloc+'%';
+  $('prabhu-eff').textContent = state.efficiency+'%';
+  $('budget-val').textContent = state.budget+'%';
+
+  $('guru-wisdom').textContent = state.wisdom;
+  $('guru-wisdom-bar').style.width = Math.min(100, state.wisdom*8)+'%';
+  $('guru-lessons').textContent = state.lessons;
+  $('guru-last').textContent = state.lastAdjustment;
+
+  checkHarmony();
+}
+
+function toast(msg, color='#d4af37'){
+  const c = $('toast-container');
+  const d = document.createElement('div');
+  d.className = 'pointer-events-auto glass px-4 py-2.5 rounded-xl border text-[12px] font-mono shadow-2xl translate-y-2 opacity-0 transition-all duration-300';
+  d.style.background = 'rgba(4,8,6,0.85)';
+  d.style.borderColor = color+'55';
+  d.style.color = color;
+  d.style.boxShadow = `0 8px 30px -10px ${color}40`;
+  d.textContent = msg;
+  c.appendChild(d);
+  requestAnimationFrame(()=>{ d.style.opacity='1'; d.style.transform='translateY(0)'; });
+  setTimeout(()=>{ d.style.opacity='0'; d.style.transform='translateY(8px)'; setTimeout(()=>d.remove(),300); }, 3800);
+}
+
+// VINAY
+function pulseVinay(intensity){
+  state.inputLevel = Math.min(100, Math.round(intensity*1.5));
+  state.recentInputs.push(Date.now());
+  state.recentInputs = state.recentInputs.filter(t=>Date.now()-t<3000);
+
+  const wire = $('wire-vinay-jk');
+  wire.setAttribute('stroke-opacity','0.8');
+  setTimeout(()=>wire.setAttribute('stroke-opacity','0.18'), 900);
+
+  if(intensity>70){
+    vinayIris.style.transform='scale(0.62)';
+    vinayCore.setAttribute('fill','#ef4444');
+    vinayFeedback.textContent = 'attenuating -12dB';
+    vinayFeedback.setAttribute('fill','#fca5a5');
+    state.attenuation = -12;
+    state.humility = Math.max(15, state.humility-2.5);
+    // work with Karuna to prevent overcapture
+    if(state.jkState==='J'){ setJK('K'); toast('Vinay: balancing J→K to protect Karuna', '#87a96b'); }
+    $('karuna-heart').style.opacity='1';
+    setTimeout(()=>$('karuna-heart').style.opacity='.72', 800);
+  } else if(intensity<13){
+    vinayIris.style.transform='scale(1.38)';
+    vinayCore.setAttribute('fill','#22c55e');
+    vinayFeedback.textContent = 'amplifying +6dB';
+    vinayFeedback.setAttribute('fill','#86efac');
+    state.attenuation = +6;
+    state.humility = Math.min(100, state.humility+1.2);
+  } else {
+    vinayIris.style.transform='scale(1)';
+    vinayCore.setAttribute('fill','#87a96b');
+    vinayFeedback.textContent = 'balanced';
+    vinayFeedback.setAttribute('fill','#87a96b');
+    state.attenuation = 0;
+    state.humility = Math.min(100, state.humility+0.4);
+  }
+  setTimeout(()=>{ vinayIris.style.transform='scale(1)'; vinayCore.setAttribute('fill','#87a96b'); }, 900);
+
+  // JK balance
+  if(state.jkState==='J' && intensity>60){ $('k-core').setAttribute('opacity','1'); }
+
+  state.cycleCount++; guruObserve('input', intensity); checkOverload(); updateUI();
+}
+
+function commitInput(){
+  const inp = $('signal-input');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  pulseVinay(txt.length);
+  inp.value='';
+  inp.blur();
+  // visual ping on Anjali
+  document.querySelector('#anjali-vinay').classList.add('pulse-ring');
+  setTimeout(()=>document.querySelector('#anjali-vinay').classList.remove('pulse-ring'), 700);
+}
+
+// ARJUNA + VEERENDRA
+let holdTimer=null, holdStart=0;
+const drawBtn = $('draw-btn'), holdTimeEl = $('hold-time');
+
+function activateVeerendra(mode){
+  state.veerendraStatus = mode;
+  veerendraEl.style.opacity = mode==='Dormant'? '0.14' : mode==='Standby' ? '0.62' : '0.92';
+  veerendraEl.classList.toggle('veer-glow', mode!=='Dormant');
+  $('wire-veer-arj').setAttribute('stroke-opacity', mode!=='Dormant' ? '0.85' : '0.18');
+  $('wire-veer-ant').setAttribute('stroke-opacity', mode!=='Dormant' ? '0.7' : '0.18');
+  updateUI();
+}
+
+function deactivateVeerendra(){ activateVeerendra('Dormant'); }
+
+function shootArrow(x1,y1,x2,y2, color='#cbd5e1', marker='url(#arrowSilver)'){
+  const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+  line.setAttribute('x2',x1); line.setAttribute('y2',y1);
+  line.setAttribute('stroke',color); line.setAttribute('stroke-width','2.8');
+  line.setAttribute('stroke-linecap','round'); line.setAttribute('opacity','0.95');
+  line.setAttribute('marker-end', marker);
+  arrows.appendChild(line);
+  let p=0; const id=setInterval(()=>{ p+=0.07; if(p>=1){ clearInterval(id); setTimeout(()=>line.remove(),350); return;} line.setAttribute('x2', x1+(x2-x1)*p); line.setAttribute('y2', y1+(y2-y1)*p); },16);
+}
+
+function fireArjuna(duration){
+  const longHold = duration > state.veerendraThreshold;
+  const targetX = 920 + Math.random()*40, targetY = 410 + Math.random()*20;
+  shootArrow(382,426, targetX, targetY, longHold?'#7aa0d4':'#e2e8f0', longHold?'url(#arrowSteel)':'url(#arrowSilver)');
+  
+  state.arjunaShots++; state.cycleCount++;
+  if(longHold){
+    state.failovers++; state.courage = Math.max(0, state.courage-4);
+    activateVeerendra('Fired');
+    toast('Veerendra: primary hesitation — override fired', '#4a6fa5');
+    setTimeout(deactivateVeerendra, 1400);
+  } else {
+    // perfect shot increases courage slightly
+    state.courage = Math.min(100, state.courage+1);
+    if(state.veerendraStatus!=='Dormant') deactivateVeerendra();
+  }
+  if(state.karunaActive) state.totalKarunaShots++;
+  guruObserve('shot', duration);
+  if(state.arjunaShots===5) setTimeout(()=>guruAdjust('vinay','+2% sensitivity'), 900);
+  if(state.totalKarunaShots===10) setTimeout(()=>guruAdjust('veerendra','more patient'), 900);
+  updateUI();
+}
+function fireVeerendraAuto(){
+  if(state.veerendraStatus==='Fired') return;
+  shootArrow(338,384, 960, 430, '#4a6fa5', 'url(#arrowSteel)');
+  state.failovers++; state.courage = Math.max(5, state.courage-3);
+  activateVeerendra('Fired');
+  toast('Veerendra: automatic failover — system protected', '#4a6fa5');
+  setTimeout(deactivateVeerendra, 1600);
+  guruObserve('failover',1);
+  updateUI();
+}
+
+drawBtn.addEventListener('pointerdown', e=>{ e.preventDefault(); holdStart=performance.now(); holdTimer=setInterval(()=>{ const s=(performance.now()-holdStart)/1000; holdTimeEl.textContent=s.toFixed(1)+'s'; if(s>state.veerendraThreshold && state.veerendraStatus==='Dormant'){ activateVeerendra('Standby'); toast('Veerendra: standby — Arjuna holding',' #7aa0d4'); } if(s>5.5) fireVeerendraAuto(); }, 80); drawBtn.classList.add('bg-white/10'); });
+['pointerup','pointerleave','pointercancel'].forEach(ev=>drawBtn.addEventListener(ev, ()=>{ clearInterval(holdTimer); const dur=(performance.now()-holdStart)/1000; holdTimeEl.textContent='0.0s'; drawBtn.classList.remove('bg-white/10'); if(dur>0.15) fireArjuna(dur); }));
+
+// JK
+function setJK(which){
+  state.jkState = which;
+  $('j-btn').className = 'py-2 rounded-lg font-mono text-[11px] transition ' + (which==='J'?'bg-[#f59e0b]/25 border border-[#f59e0b]/50 text-[#fbbf24]':'bg-white/5 border border-white/10 text-white/50');
+  $('k-btn').className = 'py-2 rounded-lg font-mono text-[11px] transition ' + (which==='K'?'bg-[#0ea5e9]/25 border border-[#0ea5e9]/50 text-[#7dd3fc]':'bg-white/5 border border-white/10 text-white/50');
+  if(which==='K'){
+    state.kStuck=0;
+    clearInterval(state.kInterval);
+    state.kInterval = setInterval(()=>{
+      state.kStuck++; $('k-timer').textContent = `K stability: ${state.kStuck}s`;
+      if(state.kStuck===5){ activateVeerendra('Override ready'); toast('JK stuck in K — Veerendra preparing override','#0ea5e9'); }
+      if(state.kStuck>6){ fireVeerendraAuto(); setJK('J'); }
+    },1000);
+  } else {
+    clearInterval(state.kInterval); $('k-timer').textContent='K stability: 0s'; state.kStuck=0;
+  }
+}
+$('j-btn').onclick=()=>setJK('J'); $('k-btn').onclick=()=>setJK('K'); setJK('J');
+
+// Karuna
+let karunaTimer=null; state.karunaActive=false;
+$('karuna-btn').addEventListener('pointerdown', ()=>{ state.karunaActive=true; $('karuna-btn').classList.add('bg-[#ec4899]/20'); karunaTimer=setInterval(()=>{ state.karunaHolds++; $('karuna-heart').style.transform='scale(1.08)'; setTimeout(()=>$('karuna-heart').style.transform='scale(1)',200); },600); });
+['pointerup','pointerleave'].forEach(ev=>$('karuna-btn').addEventListener(ev, ()=>{ state.karunaActive=false; clearInterval(karunaTimer); $('karuna-btn').classList.remove('bg-[#ec4899]/20'); }));
+
+// PRABHU
+const budgetSlider = $('budget-slider');
+budgetSlider.addEventListener('input', e=>{
+  state.budget = parseInt(e.target.value);
+  state.praAlloc = Math.round(state.budget*0.85);
+  state.efficiency = Math.round(62 + state.budget*0.34 + Math.random()*4);
+  $('wire-prabhu-pra').setAttribute('stroke-opacity', 0.3 + state.budget/200);
+  // talk to Guru for learning rate
+  if(state.wisdom>2) state.efficiency = Math.min(98, state.efficiency+2);
+  updateUI();
+});
+
+// Prosperity feedback loop with Aishwarya
+setInterval(()=>{
+  state.prosperity = 55 + Math.sin(Date.now()/9000)*18 + state.budget*0.18;
+  if(state.prosperity>72 && state.budget<95){ state.budget = Math.min(100, state.budget+1); budgetSlider.value=state.budget; state.praAlloc=Math.round(state.budget*0.85); }
+  if(state.prosperity<45 && state.budget>30){ state.budget = Math.max(20, state.budget-1); budgetSlider.value=state.budget; }
+  $('wire-prabhu-aish').setAttribute('stroke-opacity', 0.15 + state.prosperity/200);
+  updateUI();
+}, 4200);
+
+// GURU
+function guruObserve(type, val){
+  if(state.cycleCount>0 && state.cycleCount%10===0) guruAdjust('auto','micro-weight tune');
+}
+function guruAdjust(target, desc){
+  state.lessons++; state.wisdom = Math.min(12, state.wisdom+1);
+  state.lastAdjustment = desc || 'pattern integration';
+  // visual sediment shift
+  shiftSediment();
+  // adjust targets
+  if(target==='vinay' || target==='auto'){
+    state.humility = Math.min(100, state.humility+2);
+    $('wire-vinay-anjali').setAttribute('stroke-opacity','0.9');
+    setTimeout(()=>$('wire-vinay-anjali').setAttribute('stroke-opacity','0.25'),1200);
+    toast(`Guru: adjusted Vinay ${desc}`, '#c49b2a');
+  }
+  if(target==='veerendra'){
+    state.veerendraThreshold = Math.max(2.2, state.veerendraThreshold-0.15);
+    state.courage = Math.min(100, state.courage+5);
+    toast('Guru: Veerendra now more patient (threshold -0.15s)', '#c49b2a');
+  }
+  // adjust all slowly
+  state.efficiency = Math.min(97, state.efficiency+1);
+  updateUI();
+}
+
+// Guru sediment
+function initGuru(){
+  const cont = $('guru-particles');
+  const river = $('guru-riverbed');
+  for(let i=0;i<52;i++){
+    const d=document.createElement('div');
+    const size = 2 + Math.random()*3.5;
+    d.className='guru-particle absolute rounded-full';
+    d.style.width=size+'px'; d.style.height=size+'px';
+    d.style.left = (Math.random()*100)+'%';
+    d.style.bottom = (4+Math.random()*14)+'%';
+    d.style.background = '#8b6914';
+    d.style.opacity = 0.35 + Math.random()*0.5;
+    d.style.animationDuration = (16+Math.random()*22)+'s';
+    d.style.animationDelay = (-Math.random()*20)+'s';
+    cont.appendChild(d);
+    // svg sediment
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx', 80 + i*22); c.setAttribute('cy', 720 + Math.random()*40);
+    c.setAttribute('r', 1.5+Math.random()*2.5); c.setAttribute('fill','#8b6914'); c.setAttribute('opacity',0.25+Math.random()*0.4);
+    c.dataset.baseY = c.getAttribute('cy'); river.appendChild(c);
+  }
+}
+function shiftSediment(){
+  document.querySelectorAll('#guru-riverbed circle').forEach((c,i)=>{
+    const base = parseFloat(c.dataset.baseY);
+    c.setAttribute('cy', base - Math.random()*3 - state.wisdom*0.4);
+    c.setAttribute('opacity', 0.3 + Math.random()*0.5);
+  });
+}
+
+// Emergency modes
+function checkOverload(){
+  if(state.recentInputs.length>5){
+    // OVERLOAD
+    state.budget = Math.max(20, state.budget-24);
+    budgetSlider.value = state.budget;
+    state.attenuation = -20; state.humility = Math.max(10, state.humility-6);
+    activateVeerendra('Active'); fireVeerendraAuto();
+    pulseVinay(100); vinayFeedback.textContent='CLAMP -20dB';
+    toast('EMERGENCY: Overload — Prabhu throttling, Vinay clamping, Veerendra active', '#ef4444');
+    showBanner('SYSTEM OVERLOAD');
+    state.recentInputs=[];
+    updateUI();
+  }
+}
+function showBanner(text){
+  const b=document.createElement('div');
+  b.className='fixed top-[78px] left-1/2 -translate-x-1/2 z-[200] px-5 py-2.5 rounded-2xl bg-red-950/90 border border-red-500/40 text-red-200 font-mono text-[12px] tracking-wide shadow-[0_0_40px_-5px_rgba(239,68,68,0.5)] backdrop-blur-xl';
+  b.textContent=text; document.body.appendChild(b); setTimeout(()=>{ b.style.opacity='0'; setTimeout(()=>b.remove(),400); }, 3200);
+}
+
+// Harmony
+function checkHarmony(){
+  const aligned = state.humility>70 && state.courage>80 && state.budget>60 && state.wisdom>=3;
+  const dot = $('harmony-dot');
+  if(aligned){
+    dot.className='w-[8px] h-[8px] rounded-full bg-[#d4af37] shadow-[0_0_12px_#d4af37] transition-all duration-700';
+    wiring.setAttribute('stroke-opacity','0.55');
+    wiring.style.filter='drop-shadow(0 0 6px rgba(212,175,55,0.3))';
+  }else{
+    dot.className='w-[8px] h-[8px] rounded-full bg-white/20 transition-all duration-700';
+    wiring.setAttribute('stroke-opacity','0.14');
+    wiring.style.filter='none';
+  }
+}
+
+// Init
+$('commit-btn').onclick = commitInput;
+$('signal-input').addEventListener('keydown', e=>{ if(e.key==='Enter') commitInput(); });
+
+initGuru(); updateUI();
+
+// Stars background
+const canvas = $('stars'), ctx = canvas.getContext('2d'); let w,h,stars=[];
+function resize(){ w=canvas.width=window.innerWidth; h=canvas.height=window.innerHeight; stars = Array.from({length:120}, ()=>({x:Math.random()*w,y:Math.random()*h*0.7,r:Math.random()*1.2, o:Math.random()*0.5+0.2})); }
+window.addEventListener('resize', resize); resize();
+(function anim(){ ctx.clearRect(0,0,w,h); stars.forEach(s=>{ ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.28); ctx.fillStyle=`rgba(200,220,200,${s.o})`; ctx.fill(); s.y+=0.02; if(s.y>h) s.y=0; }); requestAnimationFrame(anim); })();
+
+// Demo sequence to show learning
+setTimeout(()=>{ $('signal-input').value='gentle hello'; commitInput(); }, 1200);
+setTimeout(()=>{ $('signal-input').value='A very long intense overwhelming signal that floods the system with too much information all at once beyond capacity'; commitInput(); }, 3400);
+setTimeout(()=>{ setJK('K'); }, 5600);
+</script>
+</div>
+</body>
+</html>
